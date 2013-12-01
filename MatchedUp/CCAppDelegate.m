@@ -13,7 +13,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    /* Setup Parse */
+    [Parse setApplicationId:@"GYacBYciv3ISqXOi66cbkoi7pRIzNn8zU6QgeBZ9"
+                  clientKey:@"Sr8CdWo6f37yAkKHYJkxK77Ndcj56U0SsBulBRa0"];
+    /* Initialize facebook singleton. There will be one and only 1 instance of PFFacebookUtils ever in our application. */
+    [PFFacebookUtils initializeFacebook];
+    
     return YES;
+}
+
+/* Setups our Facebook login and sets up our PFFacebookUtilis session */
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [PFFacebookUtils handleOpenURL:url];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
